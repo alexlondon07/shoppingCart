@@ -1,49 +1,77 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from "react";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { StackNavigator } from "react-navigation";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Catalog from "./src/scenes/Catalog";
+import ItemProductDetail from "./src/scenes/Catalog/components/item-product-detail";
+import Cart from "./src/scenes/Cart";
+import Home from "./src/scenes/Home";
+import Form from "./src/scenes/Form";
+import Success from "./src/scenes/Succes";
+
+const AppNavigator = StackNavigator(
+  {
+    HomeScreen :{
+      screen: Home,
+      navigationOptions: () => ({
+        title: 'Home'
+      })
+    },
+    CatalogScreen :{
+      screen: Catalog,
+      navigationOptions: () => ({
+        title: 'Catalog'
+      })
+    },
+    ProductDetailScreen :{
+      screen: ItemProductDetail,
+      navigationOptions: () => ({
+        title: 'Product Detail'
+      })
+    },
+    CartScreen :{
+      screen: Cart,
+      navigationOptions: () => ({
+        title: 'Cart'
+      })
+    },  
+    FormScreen :{
+      screen: Form,
+      navigationOptions: () => ({
+        title: 'Form'
+      })
+    }, 
+    SuccessScreen :{
+      screen: Success,
+      navigationOptions: () => ({
+        title: 'Success'
+      })
+    }, 
+  },
+  {
+    initialRouteName: 'CatalogScreen',
+    navigationOptions : {
+      title: 'View Products',
+      headerStyle: {
+          backgroundColor: '#3949AB',
+          borderBottomColor: '#3949AB',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+          fontWeight: '500',
+          fontSize: 26
+      },
+    }
+  }
+);
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+    return <AppNavigator />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
