@@ -3,11 +3,11 @@ import React, { Component } from "react";
 import { StackNavigator } from "react-navigation";
 
 import Catalog from "./src/scenes/Catalog";
-import ItemProductDetail from "./src/scenes/Catalog/components/item-product-detail";
 import Cart from "./src/scenes/Cart";
 import Home from "./src/scenes/Home";
 import Form from "./src/scenes/Form";
 import Success from "./src/scenes/Succes";
+import CatalogDetail from "./src/scenes/CatalogDetail";
 
 const AppNavigator = StackNavigator(
   {
@@ -20,15 +20,15 @@ const AppNavigator = StackNavigator(
     CatalogScreen :{
       screen: Catalog,
       navigationOptions: () => ({
-        title: 'Catalog'
+        title: 'Products List'
       })
     },
-    ProductDetailScreen :{
-      screen: ItemProductDetail,
-      navigationOptions: () => ({
-        title: 'Product Detail'
-      })
-    },
+    CatalogDetailScreen :{
+       screen: CatalogDetail,
+       navigationOptions: () => ({
+         title: 'Product Detail'
+       })
+     },
     CartScreen :{
       screen: Cart,
       navigationOptions: () => ({
