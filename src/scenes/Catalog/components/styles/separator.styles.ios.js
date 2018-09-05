@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     separator:{
         borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        borderBottomColor: '#70b124',
         marginVertical: 3
     }    
 });

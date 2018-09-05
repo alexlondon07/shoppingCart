@@ -23,8 +23,9 @@ from 'react-native';
           <Image style={styles.image}  source={{ uri: 'https://png.pngtree.com/element_pic/16/12/01/89815cd0e8828d5b9e66af21f83a7102.jpg' }} />        
         </View>
         <View style={styles.description}>
+          <Text style={styles.priceText}> $ 5.000 </Text>
           <Text style={styles.descriptionText}>Donas de fresa con chocolate </Text>
-        </View>      
+        </View>  
       </View>
     </View>
   );
@@ -78,6 +79,20 @@ from 'react-native';
       height: 200,
       width: 250,
     },
+    price:{
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    priceText:{
+      backgroundColor: '#70b124',
+      color: 'white',
+      fontSize: 20,
+      borderRadius: 5,
+      alignItems: 'center',
+      lineHeight: 30
+      
+    },
     description: {
       flex: 1,
       alignItems: 'center',
@@ -85,7 +100,7 @@ from 'react-native';
     },
     descriptionText: {
       color: '#fff',
-      fontSize: 14,
+      fontSize: 18,
       lineHeight: 30
     },
     });
