@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     cover:{
         height: 120,
         width: 180,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
     },
     right:{
         paddingLeft: 2,

@@ -1,6 +1,6 @@
 import React , {Component}from 'react';
 import {
-    Platform,
+    Button,
     Text, 
     View,
     Image,
@@ -31,44 +31,63 @@ class ProductDetail extends Component{
        .catch( error => console.log(error) );
    }
 
+  onPressLearnMore (){}
+
   render(){
     return (
-      <View style={styles.container}>
-      <View style={styles.dataContainer}>
-          <View style={styles.brand}>
-            <Text style={styles.brandText}> { this.state.product.brand } </Text>    
+      <View>
+         <View style={styles.dataContainer}>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image}  source={{ uri: this.state.product.avatar  }} />        
+            </View>
+
+            <View style = {styles.containerCol}>
+                <View style={styles.brand}>
+                  <Text style={styles.brandText}> { this.state.product.brand } </Text>    
+                </View>
+              
+                <View style={styles.title}>
+                  <Text style={styles.titleText}>{ this.state.product.name }</Text>
+                  <Text style={styles.priceText}> $ { this.state.product.price } </Text>
+                </View>
+            </View>
           </View>
-          <View style={styles.title}>
-            <Text style={styles.titleText}>{ this.state.product.name }</Text>
-          </View>
-          <View style={styles.imageContainer}>
-            <Image style={styles.image}  source={{ uri: this.state.product.avatar  }} />        
-          </View>
+
           <View style={styles.description}>
-            <Text style={styles.priceText}> $ { this.state.product.price } </Text>
-            <Text style={styles.descriptionText}>{ this.state.product.description } </Text>
-          </View>  
-        </View>
+              <Text style={styles.descriptionText}>{ this.state.product.description } </Text>
+          </View>
+
+          <View style={styles.containerButton}>
+            <View style={styles.button}>
+              <Button
+                  title="Comprar"
+                  color="white"
+                  onPress={this.onPressLearnMore}
+                />
+            </View>
+          </View>
+
+           
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#3949AB',
-    justifyContent: 'center',
-    alignItems: 'center'
+  containerCol:{
+    flexDirection: 'column',
+    marginLeft: 10,
   },
   dataContainer: {
-    color: '#fff',
+    color: '#3949AB',
     borderRadius: 5,
     borderWidth: 0,
-    padding: 15,
-    marginLeft: 15,
-    marginTop: 15
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 20,
+
   },
   brand: {
-    color: '#fff',
+    color: '#3949AB',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -77,30 +96,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   headerText: {
-    color: '#fff',
+    color: '#3949AB',
     fontSize: 16,
     marginBottom: 10,
     fontWeight: "bold"
   },
   titleText: {
-    color: '#fff',
+    color: '#3949AB',
     fontSize: 18,
     marginBottom: 5,
     fontWeight: "bold"
   },
   brandText: {
-    color: '#fff',
+    color: '#3949AB',
     fontSize: 16,
     marginBottom: 5,
     fontWeight: "bold"
   },
   imageContainer: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   image: {  
-    height: 200,
-    width: 250,
+    height: 150,
+    width: 150,
+    resizeMode: 'contain',
   },
   price:{
     flex: 1,
@@ -108,24 +128,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   priceText:{
-    backgroundColor: '#70b124',
+    backgroundColor: '#3949AB',
+    padding: 2,
     color: 'white',
     fontSize: 20,
-    borderRadius: 5,
+    borderRadius: 10,
     alignItems: 'center',
     lineHeight: 30
-    
   },
   description: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    padding: 20,
   },
   descriptionText: {
-    color: '#fff',
-    fontSize: 18,
-    lineHeight: 30
+    color: '#3949AB',
+    fontSize: 20,
   },
+  containerButton:{
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button:{
+    flexDirection: 'column',
+    padding: 5,
+    backgroundColor: '#3949AB',
+    width: 100,
+    height: 50,
+    borderRadius: 20,
+  }
 });
 
 export default ProductDetail;
