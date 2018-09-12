@@ -13,6 +13,8 @@ import ItemProduct from './components/item-product';
 import ItemSeparator from './components/item-separator';
 import Api from '../../utils/api';
 
+import HttpProduct from "../../services/Product/http-products";
+
 class Catalog extends Component{
 
     constructor(props){
@@ -23,15 +25,15 @@ class Catalog extends Component{
     }
 
     componentDidMount = () =>{ 
-       //Invoke service
-        Api.getProducts()
-        .then( data => {
+        this.getProducts();
+    }
+
+    async getProducts(){
+        const data = await HttpProduct.getProducts();
         this.setState({
             productList: data
         });
-        console.log(data)
-        })
-        .catch( error => console.log(error) );
+        console.log(data);
     }
 
     static navigationOptions = {

@@ -5,31 +5,36 @@ import {
     View,
     Image,
     StyleSheet,
+    TouchableOpacity,
 } 
 from 'react-native';
 import Api from '../../../utils/api';
+import HttpProduct from '../../../services/Product/http-products';
 
 
 class ProductDetail extends Component{
-  
     constructor(props){
         super(props);
         this.state = {
             product: []
         }
     }
+
     componentDidMount = () =>{ 
-     id = this.props.navigation.getParam('id', 'no-data') ;
-      //Invoke service
-      Api.getProductsById(id)
-       .then( data => {
-       this.setState({
-           product: data
-       })
-       console.log(data)
-       })
-       .catch( error => console.log(error) );
+      id = this.props.navigation.getParam('id', 'no-data') ;
+      this.getProductById(id);
    }
+
+   /**
+    * Funcion para Obtener un producto por su Identificador
+    */
+   async getProductById(id){
+      const data = await HttpProduct.getProductsById(id);
+      this.setState({
+        product: data
+      })
+      console.log(data);
+    } 
 
   onPressLearnMore (){}
 
@@ -58,16 +63,12 @@ class ProductDetail extends Component{
           </View>
 
           <View style={styles.containerButton}>
-            <View style={styles.button}>
-              <Button
-                  title="Comprar"
-                  color="white"
-                  onPress={this.onPressLearnMore}
-                />
-            </View>
+            <TouchableOpacity onPress={this._onPressButton}>
+              <View style={styles.buttonOpacity}>
+                <Text style={styles.buttonTextOpacity}>Comprar</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-
-           
       </View>
     );
   }
@@ -150,13 +151,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button:{
-    flexDirection: 'column',
-    padding: 5,
+  buttonOpacity: {
+    marginBottom: 30,
+    width: 260,
+    alignItems: 'center',
     backgroundColor: '#3949AB',
-    width: 100,
-    height: 50,
     borderRadius: 20,
+  },
+  buttonTextOpacity: {
+    padding: 20,
+    color: 'white',
+    fontSize: 18
   }
 });
 
