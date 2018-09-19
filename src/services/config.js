@@ -6,3 +6,8 @@ export const HTTP_PRODUCT = {
     getProduct: '/product' //Id
 }
 
+//User
+export const HTTP_USER = {
+    login: '/user/auth'
+}
+

@@ -13,7 +13,7 @@ import {
             style={styles.profileImage}
         />
         <Text style={styles.profileName}> Alexander Londoño </Text>
-        <Text style={styles.username}> @alelondon07  </Text>
+        <Text style={styles.username}> @alexlondon07  </Text>
     </View>
   );
 

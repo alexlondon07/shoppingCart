@@ -46,6 +46,7 @@ class Catalog extends Component{
     separatorComponent = () => <ItemSeparator />;
     emptyComponent = () => <Text>Products not found </Text>
     keyExtractor = item => item._id.toString();
+    
     render(){
         return (
             <View>

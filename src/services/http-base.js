@@ -37,7 +37,6 @@ class HttpBase{
              .catch (error =>reject(error))
          })
          return promise;
-     
      }
  
      headersConfig(customHeaders){

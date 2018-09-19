@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { 
     View
   } from 'react-native';
-import ProductDetail from "./components/product-detail";
+import LoginForm from './../Login/components/login'
 
-class CatalogDetail extends Component {
+class Login extends Component {
 
     constructor(props) {
         super(props);
@@ -12,9 +12,9 @@ class CatalogDetail extends Component {
     render() {
         return (
             <View>
-                <ProductDetail navigation={ this.props.navigation } />                  
+                <LoginForm />                  
             </View>
         );
     }
 }
-export default CatalogDetail;
+export default Login;
