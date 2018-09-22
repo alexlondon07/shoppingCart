@@ -7,29 +7,28 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+
 const ItemProduct = (props) => (
     <TouchableHighlight
-        onPress = { ()=> props.navigation.navigate('ProductDetailScreen') }
+        onPress = { ()=> props.navigation.navigate('CatalogDetailScreen', { id: props.product._id } ) }
         underlayColor = "#ccc"
     >
-         <View style={ styles.container }>
-            <View styles={ styles.left }>
-                <Image
-                    style={styles.cover}
-                    source ={{ uri: props.product.photo }}
-                />
-                <View style={ styles.reference }>
-                    <Text style={ styles.referenceText }>{ props.product.reference }</Text>
-                </View>
-            </View>
-            <View style={ styles.right }>
-                <Text style={ styles.title }>{ props.product.name }</Text>
-                <Text style={ styles.price }>{ props.product.price }</Text>
-                <Text style={ styles.description }>{ props.product.description }</Text>
+    <View style={ styles.container }>
+        <View styles={ styles.left }>
+            <Image
+                style={styles.cover}
+                source ={{ uri: props.product.avatar }}
+            />
+            <View style={ styles.brand }>
+                <Text style={ styles.brandText }>{ props.product.brand }</Text>
             </View>
         </View>
-
-
+        <View style={ styles.right }>
+            <Text style={ styles.title }>{ props.product.name }</Text>
+            <Text style={ styles.price }> $ { props.product.price }</Text>
+            <Text style={ styles.description }>{ props.product.description }</Text>
+        </View>
+    </View>
     </TouchableHighlight>
 
 );
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     container:{
         flexDirection: 'row',
     },
-    reference:{
+    brand:{
         position: 'absolute',
         left: 0,
         top: 0,
@@ -46,14 +45,14 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 7,
     },
-    referenceText:{
+    brandText:{
         color: 'white',
         fontSize: 11
     },
     cover:{
         height: 120,
         width: 180,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
     },
     right:{
         paddingLeft: 2,

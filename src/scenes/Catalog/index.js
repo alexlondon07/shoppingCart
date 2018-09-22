@@ -4,95 +4,79 @@ import {
     Text,
     FlatList,
     Button,
-    StyleSheet
+    AsyncStorage
 } from 'react-native';
+
+import { SearchBar } from 'react-native-elements';
 
 import Home from '../Home';
 import Header from '../Header';
 import ItemProduct from './components/item-product';
 import ItemSeparator from './components/item-separator';
 
+import HttpProduct from "../../services/Product/http-products";
+
 class Catalog extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            productList: []
+            productList: [],
+            arrayholder: []
         }
     }
-
-    componentDidMount = () =>{
-        const list = [
-            {
-                id: 1,
-                name: "Donas de fresas",
-                description: "Donas de fresa con chocolate",
-                reference: "REF-D01",
-                status: "inactive",
-                photo: 'https://png2.kisspng.com/20180328/dgq/kisspng-donuts-frosting-icing-t-shirt-sprinkles-clip-art-homero-5abc5c53002ba6.0250195715222938430007.png',
-                price : 4300
-            },
-            {
-                id: 2,
-                name: "Dona de coco",
-                description: "Con coco y arequipe",
-                reference: "REF-D02",
-                status: "active",
-                photo: 'https://clip2art.com/images/drawn-dougnut-png-tumblr-transparent-7.png',
-                price : 4000
-            },
-            {
-                id: 3,
-                name: "Donas de crema",
-                description: "Con crema de leche y dulce",
-                reference: "REF-D03",
-                status: "active",
-                photo: 'https://openclipart.org/image/2400px/svg_to_png/248890/Brown-Donut.png',
-                price : 880
-            },
-            {
-                id: 4,
-                name: "Donas de fresas",
-                description: "Con fresa con chocolate",
-                reference: "REF-D04",
-                status: "inactive",
-                photo: 'https://png2.kisspng.com/20180328/dgq/kisspng-donuts-frosting-icing-t-shirt-sprinkles-clip-art-homero-5abc5c53002ba6.0250195715222938430007.png',
-                price : 4300
-            },
-            {
-                id: 5,
-                name: "Dona de coco",
-                description: "Con coco y arequipe",
-                reference: "REF-D05",
-                status: "active",
-                photo: 'https://clip2art.com/images/drawn-dougnut-png-tumblr-transparent-7.png',
-                price : 4000
-            },
-            {
-                id: 6,
-                name: "Donas de crema",
-                description: "Con crema de leche y dulce",
-                reference: "REF-D06",
-                status: "active",
-                photo: 'https://openclipart.org/image/2400px/svg_to_png/248890/Brown-Donut.png',
-                price : 880
-            },
-        ];
-        this.setState ({
-            productList: list
+    componentDidMount = () =>{ 
+        this.getProducts();
+    }
+    /**
+     * Metodo para Obtener los Productos de nuestra Api
+     */
+    async getProducts(){
+        const data = await HttpProduct.getProducts();
+        this.setState({
+            productList: data,
+            arrayholder: data,
         });
     }
+    renderHeaderSearchBar = () => {
+        return (
+            <SearchBar
+                placeholder="Type Here..."
+                lightTheme
+                round
+                onChangeText={text => this.searchFilterFunction(text)}
+                autoCorrect={false}
+                clearIcon
+                autoFocus={true}
+            />
+        );
+    };
+        /**
+     * Función para Buscar Productos segun lo que hallan ingresado en el Buscador
+     */
+    searchFilterFunction = text => {
 
-    static navigationOptions = {
-        title: 'Catlog',
-        headerTitleStyle: {
-            fontSize: 18
-        },
-    }
+        const newData = this.state.arrayholder.filter(item => {            
+            
+            const itemData = `${item.name.toUpperCase()}`;
+            const textData = text.toUpperCase();
+
+            //Retorna el Item siempre y cuando exista Información
+            return itemData.indexOf(textData) > -1;
+        });
+        this.setState({ 
+            productList: newData,
+        });
+    };
+
     renderItem = ( { item }) => <ItemProduct navigation = { this.props.navigation } product = { item } />
     separatorComponent = () => <ItemSeparator />;
     emptyComponent = () => <Text>Products not found </Text>
-    keyExtractor = item => item.id.toString();
+    keyExtractor = item => item._id.toString();
+    closeSession = async () =>{
+        await AsyncStorage.clear();
+        this.props.navigation.navigate('AuthLoading')
+    }
     render(){
         return (
             <View>
@@ -102,37 +86,22 @@ class Catalog extends Component{
                             title ="Cart"
                             onPress = { ()=> this.props.navigation.navigate('CartScreen') }
                         />
+                        <Button
+                            onPress={ this.closeSession } 
+                            title="Close session"
+                        />
                     </Header>
-                    <FlatList
-                        data ={ this.state.productList }
-                        renderItem={ this.renderItem }
-                        ItemSeparatorComponent = { this.separatorComponent }
-                        ListEmptyComponent = { this.emptyComponent }
-                        keyExtractor = { this.keyExtractor }
-                    />
+                        <FlatList
+                            data ={ this.state.productList }
+                            renderItem={ this.renderItem }
+                            ItemSeparatorComponent = { this.separatorComponent }
+                            ListEmptyComponent = { this.emptyComponent }
+                            keyExtractor = { this.keyExtractor }
+                            ListHeaderComponent={this.renderHeaderSearchBar}  
+                        />
                 </Home>
             </View>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
-    },
-  });
-
 export default Catalog;
