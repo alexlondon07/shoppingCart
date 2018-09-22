@@ -30,6 +30,39 @@ class HttpBase{
          }
      }
  
+     async baseGetParams(url, config){
+        const options = {
+            method: 'GET',
+            headers: this.headersConfig(config.headers),
+        }
+        
+        let data;
+        
+        try {
+            let query = await this.callHttp(this.buildUrl(url, config.params), options);
+            data = await query.json();
+        } catch (error) {
+            throw new Error(error)   
+        }
+        return data;
+    }
+
+    buildUrl(url, parameters) {
+        let qs = "";
+        for (const key in parameters) {
+            if (parameters.hasOwnProperty(key)) {
+                const value = parameters[key];
+                qs +=
+                    encodeURIComponent(key) + "=" + encodeURIComponent(value) + "&";
+            }
+        }
+        if (qs.length > 0) {
+            qs = qs.substring(0, qs.length - 1); //chop off last "&"
+            url = url + "?" + qs;
+        }
+        return url;
+    }
+
      callHttp(url, options){
          let promise =  new Promise((resolve, reject) => {
              fetch(url, options)

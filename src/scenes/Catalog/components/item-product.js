@@ -13,22 +13,22 @@ const ItemProduct = (props) => (
         onPress = { ()=> props.navigation.navigate('CatalogDetailScreen', { id: props.product._id } ) }
         underlayColor = "#ccc"
     >
-         <View style={ styles.container }>
-            <View styles={ styles.left }>
-                <Image
-                    style={styles.cover}
-                    source ={{ uri: props.product.avatar }}
-                />
-                <View style={ styles.brand }>
-                    <Text style={ styles.brandText }>{ props.product.brand }</Text>
-                </View>
-            </View>
-            <View style={ styles.right }>
-                <Text style={ styles.title }>{ props.product.name }</Text>
-                <Text style={ styles.price }> $ { props.product.price }</Text>
-                <Text style={ styles.description }>{ props.product.description }</Text>
+    <View style={ styles.container }>
+        <View styles={ styles.left }>
+            <Image
+                style={styles.cover}
+                source ={{ uri: props.product.avatar }}
+            />
+            <View style={ styles.brand }>
+                <Text style={ styles.brandText }>{ props.product.brand }</Text>
             </View>
         </View>
+        <View style={ styles.right }>
+            <Text style={ styles.title }>{ props.product.name }</Text>
+            <Text style={ styles.price }> $ { props.product.price }</Text>
+            <Text style={ styles.description }>{ props.product.description }</Text>
+        </View>
+    </View>
     </TouchableHighlight>
 
 );

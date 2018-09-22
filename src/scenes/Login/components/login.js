@@ -6,16 +6,18 @@ import {
     TextInput,
     StyleSheet,
     Image,
-    Dimensions
+    AsyncStorage
 } from 'react-native';
 
-//import HttpUser from "../../../services/User/http-user";
+import HttpUser from "../../../services/User/http-user";
 
 export class LoginForm extends Component{
 
     constructor(props){
         super(props);
         this.state = {
+            email: '',
+            password: '',
         }
     }
 
@@ -27,6 +29,19 @@ export class LoginForm extends Component{
         }
     }
 
+    login = async () =>{
+        const params = {
+            email: this.email,
+            password: this.password,
+        }
+        const data = await HttpUser.login(params);
+        if(data.token){
+            console.log(data);
+            await AsyncStorage.setItem('data', JSON.stringify(data));
+            this.props.navigation.navigate('App');  
+        }
+    }
+    
     render() {
         return (
           <View style ={styles.container}>
@@ -68,7 +83,7 @@ export class LoginForm extends Component{
                     />
                     <Button
                         title="Sign in"
-                        onPress={()=>{}}
+                        onPress={() => this.login() }
                     />
                 </View>
             </View>

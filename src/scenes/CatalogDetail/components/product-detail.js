@@ -8,35 +8,30 @@ import {
     TouchableOpacity,
 } 
 from 'react-native';
-import Api from '../../../utils/api';
 import HttpProduct from '../../../services/Product/http-products';
 
-
 class ProductDetail extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            product: []
-        }
-    }
+  constructor(props){
+      super(props);
+      this.state = {
+          product: []
+      }
+  }
 
-    componentDidMount = () =>{ 
+  componentDidMount = () =>{ 
       id = this.props.navigation.getParam('id', 'no-data') ;
       this.getProductById(id);
-   }
-
+  }
    /**
     * Funcion para Obtener un producto por su Identificador
     */
-   async getProductById(id){
+  async getProductById(id){
       const data = await HttpProduct.getProductsById(id);
       this.setState({
         product: data
       })
       console.log(data);
-    } 
-
-  onPressLearnMore (){}
+  } 
 
   render(){
     return (

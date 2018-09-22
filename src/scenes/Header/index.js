@@ -19,14 +19,14 @@ function Header(props){
                     />
                     <View style={styles.right}>
                         {props.children}
-                       <TouchableOpacity
+                        <TouchableOpacity
                                 onPress = { ()=> props.navigation.navigate('CartScreen') }
                             >                
                             <Image
                                 source={require('../../../assets/cart.png')}
                                 style={styles.logo}
                             />
-                          </TouchableOpacity>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </SafeAreaView>

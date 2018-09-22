@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import Profile from './profile';
+import Profile from '../scenes/Profile';
 
-//Iconos de nuestros Tabs
-const iconTab2 = (<Icon name="rocket" size={24} color="#999"/>);
-const iconTab3 = (<Icon name="address-card" size={24} color="#999"/>)
 
 export class SideMenu extends Component {
     constructor(props){
         super(props)
+        console.log('SideMenu')
     }
     render() {
         return (
         <View style={styles.container}>
-
                 <ScrollView>
                     <Profile/>
                     <View style={styles.itemSectionNav}>

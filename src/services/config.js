@@ -8,6 +8,6 @@ export const HTTP_PRODUCT = {
 
 //User
 export const HTTP_USER = {
-    login: '/user/auth'
+    getLogin: '/user/auth'
 }
 
