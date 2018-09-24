@@ -23,6 +23,12 @@ export class SideMenu extends Component {
                         <Text style={styles.textItemSectionNav} onPress={ ()=> this.props.navigation.navigate('StackCarScreen') } > 
                         <Icon name="shopping-cart" size={24} color="#999"/>   Carrito de Compras </Text>
                     </View>
+
+
+                    <View style={styles.itemSectionNav}>
+                        <Text style={styles.textItemSectionNav} onPress={ ()=> this.props.navigation.navigate('Tabs') } > Tabs </Text>
+                    </View>
+
                 </ScrollView>
                 
                 <View style={styles.footerContainer}>

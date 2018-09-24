@@ -13,20 +13,15 @@ function Header(props){
         <View>
             <SafeAreaView>
                 <View style={styles.container}>
-                    <Image
-                        source={require('../../../assets/tienda.png')}
-                        style={styles.logo}
-                    />
+                    <TouchableOpacity>
+                        <Image
+                            source={require('../../../assets/tienda.png')}
+                            onPress={ () => this.props.navigation.openDrawer() } 
+                            style={styles.logo}
+                        />
+                    </TouchableOpacity>
                     <View style={styles.right}>
                         {props.children}
-                        <TouchableOpacity
-                                onPress = { ()=> props.navigation.navigate('CartScreen') }
-                            >                
-                            <Image
-                                source={require('../../../assets/cart.png')}
-                                style={styles.logo}
-                            />
-                        </TouchableOpacity>
                     </View>
                 </View>
             </SafeAreaView>

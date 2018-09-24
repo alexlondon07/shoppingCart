@@ -16,24 +16,46 @@ export class LoginForm extends Component{
     constructor(props){
         super(props);
         this.state = {
-            email: '',
-            password: '',
+            email: 'lzulu@gmail.com',
+            password: '123456',
+            error: '',
         }
     }
 
     onChangeText = (input, text)=>{
         if(input == 'email'){
-            this.email = text;
+            this.state.email = text;
         }else if(input == 'password'){
-            this.password = text;
+            this.state.password = text;
+        }
+    }
+
+    validate = () =>{
+        var vBalid = true;
+        console.log(this.state);
+
+        if(this.state.email === ""){
+            this.setState({error: 'Email field is required'});
+            vBalid = false;
+            return;
+        }
+        if(this.state.password === ""){
+            this.setState({error: 'Password field is required'});
+            vBalid = false;
+            return;
+        }
+        if(vBalid){
+            this.setState({error: ''});
+            this.login();
         }
     }
 
     login = async () =>{
         const params = {
-            email: this.email,
-            password: this.password,
+            email: this.state.email,
+            password: this.state.password,
         }
+        console.log('params:'+params);
         const data = await HttpUser.login(params);
         if(data.token){
             console.log(data);
@@ -44,7 +66,7 @@ export class LoginForm extends Component{
     
     render() {
         return (
-          <View style ={styles.container}>
+        <View style ={styles.container}>
 
             <View style={styles.wrapper}>
 
@@ -81,25 +103,28 @@ export class LoginForm extends Component{
                         onChangeText={(text)=>this.onChangeText('password',text)}
                         secureTextEntry
                     />
+                    <Text style={styles.error}>
+                        {this.state.error}
+                    </Text>
                     <Button
                         title="Sign in"
-                        onPress={() => this.login() }
+                        onPress={() => this.validate() }
                     />
                 </View>
             </View>
-          </View>
+        </View>
         );
-      }
+    }
 }
 
 
 const styles = StyleSheet.create({
     wrapper:{
-       paddingHorizontal: 20,
-       flexDirection: 'column',
-       alignContent: 'center',
-       alignItems: 'center',
-       marginTop: '30%'
+        paddingHorizontal: 20,
+        flexDirection: 'column',
+        alignContent: 'center',
+        alignItems: 'center',
+        marginTop: '30%'
     },
     container:{
     },
@@ -125,11 +150,15 @@ const styles = StyleSheet.create({
     greeting: {
         marginTop: 20,
         fontSize: 16,
-      },
-      greeting2: {
+    },
+    greeting2: {
         color: '#666',
         fontSize: 16,
         marginTop: 5,
+    },
+    error:{
+        color: 'red',
+        textAlign: 'center'
     }
     
 });

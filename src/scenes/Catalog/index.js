@@ -41,7 +41,7 @@ class Catalog extends Component{
     renderHeaderSearchBar = () => {
         return (
             <SearchBar
-                placeholder="Type Here..."
+                placeholder="Search product"
                 lightTheme
                 round
                 onChangeText={text => this.searchFilterFunction(text)}
@@ -81,7 +81,7 @@ class Catalog extends Component{
         return (
             <View>
                 <Home>
-                    <Header>
+                    <Header >
                         <Button
                             title ="Cart"
                             onPress = { ()=> this.props.navigation.navigate('CartScreen') }

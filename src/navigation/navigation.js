@@ -1,4 +1,4 @@
-
+import React from 'react';
 import {  StackNavigator, DrawerNavigator, createSwitchNavigator } from 'react-navigation';
 
 import Catalog from '../scenes/Catalog';
@@ -15,17 +15,17 @@ import Profile from '../scenes/Profile';
         ProfileScreen: { screen: Profile },
     },
     {
-    initialRouteName: 'CatalogScreen',
-    navigationOptions:{
-        //headerTitleAllowFontScaling: true,
-        headerBackTitle: 'Atras',
-        //getturesEnabled: true
-    },
+        initialRouteName: 'CatalogScreen',
+        navigationOptions:{
+            //headerTitleAllowFontScaling: true,
+            headerBackTitle: 'Atras',
+            //getturesEnabled: true
+        },
     });
-
     export const StackCart = StackNavigator({
         CartScreen: { screen: Cart },
     });
+
     export const Drawer = DrawerNavigator({
         StackScren: { screen: StackProducts },
         StackCarScreen: { screen: StackCart },
@@ -39,5 +39,5 @@ import Profile from '../scenes/Profile';
         AuthLoading: AuthLoading,
         App: Drawer
     },{
-        initialRouteName: 'App',
+        initialRouteName: 'AuthLoading',
     });
