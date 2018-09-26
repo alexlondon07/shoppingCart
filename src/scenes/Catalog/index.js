@@ -13,8 +13,9 @@ import Home from '../Home';
 import Header from '../Header';
 import ItemProduct from './components/item-product';
 import ItemSeparator from './components/item-separator';
-
 import HttpProduct from "../../services/Product/http-products";
+import i18n from './../../i18n';
+
 
 class Catalog extends Component{
 
@@ -71,7 +72,7 @@ class Catalog extends Component{
 
     renderItem = ( { item }) => <ItemProduct navigation = { this.props.navigation } product = { item } />
     separatorComponent = () => <ItemSeparator />;
-    emptyComponent = () => <Text>Products not found </Text>
+    emptyComponent = () => <Text>{ i18n.t('PRODUCTS_NOT_FOUND') }</Text>
     keyExtractor = item => item._id.toString();
     closeSession = async () =>{
         await AsyncStorage.clear();
@@ -88,7 +89,7 @@ class Catalog extends Component{
                         />
                         <Button
                             onPress={ this.closeSession } 
-                            title="Close session"
+                            title={ i18n.t('CLOSE_SESSION') }
                         />
                     </Header>
                         <FlatList

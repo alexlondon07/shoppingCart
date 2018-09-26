@@ -12,15 +12,6 @@ class ProfileInfo extends Component {
     constructor(props) {
     super(props);
     }
-    
-    closeSession = async () => {
-        try {
-            await AsyncStorage.clear();
-            this.props.navigation.navigate('Auth')
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
 //const Profile = props => (
     render() {
     return (  
@@ -31,11 +22,6 @@ class ProfileInfo extends Component {
             />
             <Text style={styles.profileName}> Alexander Londoño </Text>
             <Text style={styles.username}> @alexlondon07  </Text>
-            <Button
-            onPress={() => this.closeSession() }
-            title="Sign out"
-            color='white'
-            />
         </View>
     );
     }

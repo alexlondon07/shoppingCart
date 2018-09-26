@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import HttpUser from "../../../services/User/http-user";
+import i18n from './../../../i18n';
 
 export class LoginForm extends Component{
 
@@ -24,9 +25,13 @@ export class LoginForm extends Component{
 
     onChangeText = (input, text)=>{
         if(input == 'email'){
-            this.state.email = text;
+            this.setState({
+                email: text
+            })
         }else if(input == 'password'){
-            this.state.password = text;
+            this.setState({
+                password: text
+            })
         }
     }
 
@@ -57,7 +62,7 @@ export class LoginForm extends Component{
         }
         console.log('params:'+params);
         const data = await HttpUser.login(params);
-        if(data.token){
+        if(data){
             console.log(data);
             await AsyncStorage.setItem('data', JSON.stringify(data));
             this.props.navigation.navigate('App');  
@@ -80,10 +85,10 @@ export class LoginForm extends Component{
 
                 <View style={[styles.greeting]}>
                     <Text style={[styles.greeting]}>
-                    Welcome back,
+                        { i18n.t('WELCOME_BACK') }
                     </Text>
                     <Text style={[styles.greeting2]}>
-                    Sign in to continue
+                        { i18n.t('SIGN_IN_TO_CONTINUE') }
                     </Text>
                 </View>
 
@@ -95,9 +100,9 @@ export class LoginForm extends Component{
                         value={this.state.email}
                         onChangeText={(text)=>this.onChangeText('email',text)}
                     />
-                    <Text style={styles.formLabel}> Password </Text>
+                    <Text style={styles.formLabel}>  { i18n.t('PASSWORD') } </Text>
                     <TextInput
-                        placeholder="Password"
+                        placeholder={ i18n.t('PASSWORD') } 
                         style={styles.formInput}
                         value={this.state.password}
                         onChangeText={(text)=>this.onChangeText('password',text)}
@@ -107,7 +112,7 @@ export class LoginForm extends Component{
                         {this.state.error}
                     </Text>
                     <Button
-                        title="Sign in"
+                        title={ i18n.t('SIGN_IN') }
                         onPress={() => this.validate() }
                     />
                 </View>
