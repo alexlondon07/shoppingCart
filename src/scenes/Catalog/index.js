@@ -9,13 +9,11 @@ import {
 
 import { SearchBar } from 'react-native-elements';
 
-import Home from '../Home';
 import Header from '../Header';
 import ItemProduct from './components/item-product';
 import ItemSeparator from './components/item-separator';
 import HttpProduct from "../../services/Product/http-products";
 import i18n from './../../i18n';
-
 
 class Catalog extends Component{
 
@@ -42,7 +40,7 @@ class Catalog extends Component{
     renderHeaderSearchBar = () => {
         return (
             <SearchBar
-                placeholder="Search product"
+                placeholder={ i18n.t('SEARCH_PRODUCT') }
                 lightTheme
                 round
                 onChangeText={text => this.searchFilterFunction(text)}
@@ -74,33 +72,18 @@ class Catalog extends Component{
     separatorComponent = () => <ItemSeparator />;
     emptyComponent = () => <Text>{ i18n.t('PRODUCTS_NOT_FOUND') }</Text>
     keyExtractor = item => item._id.toString();
-    closeSession = async () =>{
-        await AsyncStorage.clear();
-        this.props.navigation.navigate('AuthLoading')
-    }
     render(){
         return (
             <View>
-                <Home>
-                    <Header >
-                        <Button
-                            title ="Cart"
-                            onPress = { ()=> this.props.navigation.navigate('CartScreen') }
-                        />
-                        <Button
-                            onPress={ this.closeSession } 
-                            title={ i18n.t('CLOSE_SESSION') }
-                        />
-                    </Header>
-                        <FlatList
-                            data ={ this.state.productList }
-                            renderItem={ this.renderItem }
-                            ItemSeparatorComponent = { this.separatorComponent }
-                            ListEmptyComponent = { this.emptyComponent }
-                            keyExtractor = { this.keyExtractor }
-                            ListHeaderComponent={this.renderHeaderSearchBar}  
-                        />
-                </Home>
+                <Header/>
+                <FlatList
+                    data ={ this.state.productList }
+                    renderItem={ this.renderItem }
+                    ItemSeparatorComponent = { this.separatorComponent }
+                    ListEmptyComponent = { this.emptyComponent }
+                    keyExtractor = { this.keyExtractor }
+                    ListHeaderComponent={this.renderHeaderSearchBar}  
+                />
             </View>
         )
     }
