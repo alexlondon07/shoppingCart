@@ -7,37 +7,53 @@ import {
     Button,
     AsyncStorage
 } from 'react-native';
+import i18n from './../../../i18n';
+
 
 class ProfileInfo extends Component {
     constructor(props) {
-    super(props);
+        super(props);
+        this.state = {
+            dataUser: {}
+        }
+        this.getDataLogin();
     }
-    
-    closeSession = async () => {
+
+    getDataLogin = async () =>{
         try {
-            await AsyncStorage.clear();
-            this.props.navigation.navigate('Auth')
+            const data = await AsyncStorage.getItem('data');
+            if(data){
+                const user = JSON.parse(data);
+                this.setState({
+                    dataUser: user
+                })
+            }
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
         }
     }
-//const Profile = props => (
+
+    closeSession = async () =>{
+        await AsyncStorage.clear();
+        this.props.navigation.navigate('AuthLoading')
+    }
+
     render() {
-    return (  
-        <View style={styles.profileContainer}>
-            <Image
-                source = { { uri: 'https://avatars0.githubusercontent.com/u/5550470?s=460&v=4' } }
-                style={styles.profileImage}
-            />
-            <Text style={styles.profileName}> Alexander Londoño </Text>
-            <Text style={styles.username}> @alexlondon07  </Text>
-            <Button
-            onPress={() => this.closeSession() }
-            title="Sign out"
-            color='white'
-            />
-        </View>
-    );
+        return (  
+            <View style={styles.profileContainer}>
+                <Image
+                    source = { { uri:  this.state.dataUser.photo } }
+                    style={styles.profileImage}
+                />
+                <Text style={styles.profileName}> { this.state.dataUser.name } </Text>
+                <Text style={styles.username}> { this.state.dataUser.username }  </Text>
+                <Button style={styles.username}
+                    color="white"
+                    onPress={ this.closeSession } 
+                    title={ i18n.t('CLOSE_SESSION') }
+                />
+            </View>
+        );
     }
 }
 
@@ -68,6 +84,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         padding: 10
     },
-    });
+});
 
 export default ProfileInfo;

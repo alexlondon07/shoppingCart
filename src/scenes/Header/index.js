@@ -16,7 +16,6 @@ function Header(props){
                     <TouchableOpacity>
                         <Image
                             source={require('../../../assets/tienda.png')}
-                            onPress={ () => this.props.navigation.openDrawer() } 
                             style={styles.logo}
                         />
                     </TouchableOpacity>

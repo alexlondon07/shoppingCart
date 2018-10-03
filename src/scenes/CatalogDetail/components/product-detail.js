@@ -36,7 +36,7 @@ class ProductDetail extends Component{
   render(){
     return (
       <View>
-         <View style={styles.dataContainer}>
+          <View style={styles.dataContainer}>
             <View style={styles.imageContainer}>
               <Image style={styles.image}  source={{ uri: this.state.product.avatar  }} />        
             </View>

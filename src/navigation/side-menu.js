@@ -3,25 +3,25 @@ import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Profile from '../scenes/Profile';
 
-
 export class SideMenu extends Component {
+    
     constructor(props){
         super(props)
-        console.log('SideMenu')
     }
     render() {
         return (
         <View style={styles.container}>
                 <ScrollView>
-                    <Profile/>
+                    <Profile navigation = { this.props.navigation }/>
+
                     <View style={styles.itemSectionNav}>
                         <Text style={styles.textItemSectionNav} onPress={ ()=> this.props.navigation.navigate('StackScren') } > 
-                        <Icon name="list-alt" size={24} color="#999"/>   Catalogo </Text>
+                        <Icon name="list-alt" size={24} color="#70b124"/>   Catalogo </Text>
                     </View>
 
                     <View style={styles.itemSectionNav}>
                         <Text style={styles.textItemSectionNav} onPress={ ()=> this.props.navigation.navigate('StackCarScreen') } > 
-                        <Icon name="shopping-cart" size={24} color="#999"/>   Carrito de Compras </Text>
+                        <Icon name="shopping-cart" size={24} color="#70b124"/>   Carrito de Compras </Text>
                     </View>
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { 
     View
-  } from 'react-native';
+} from 'react-native';
 import LoginForm from './../Login/components/login'
 
 class Login extends Component {
@@ -12,7 +12,7 @@ class Login extends Component {
     render() {
         return (
             <View>
-                <LoginForm />                  
+                <LoginForm navigation={ this.props.navigation }/>                  
             </View>
         );
     }
