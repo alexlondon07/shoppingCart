@@ -3,13 +3,9 @@ import {
     View,
     Text,
     FlatList,
-    Button,
-    AsyncStorage
 } from 'react-native';
-
 import { SearchBar } from 'react-native-elements';
 
-import Header from '../Header';
 import ItemProduct from './components/item-product';
 import ItemSeparator from './components/item-separator';
 import HttpProduct from "../../services/Product/http-products";
@@ -54,12 +50,9 @@ class Catalog extends Component{
      * Función para Buscar Productos segun lo que hallan ingresado en el Buscador
      */
     searchFilterFunction = text => {
-
         const newData = this.state.arrayholder.filter(item => {            
-            
             const itemData = `${item.name.toUpperCase()}`;
             const textData = text.toUpperCase();
-
             //Retorna el Item siempre y cuando exista Información
             return itemData.indexOf(textData) > -1;
         });
@@ -75,7 +68,6 @@ class Catalog extends Component{
     render(){
         return (
             <View>
-                <Header/>
                 <FlatList
                     data ={ this.state.productList }
                     renderItem={ this.renderItem }

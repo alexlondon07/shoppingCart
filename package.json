@@ -14,7 +14,9 @@
     "react-native-languages": "^3.0.0",
     "react-native-tableview-simple": "^0.17.5",
     "react-native-vector-icons": "^5.0.0",
-    "react-navigation": "^2.12.1"
+    "react-navigation": "^2.12.1",
+    "react-redux": "^5.1.0",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",

@@ -10,13 +10,11 @@ import Profile from '../scenes/Profile';
 import Cart from '../scenes/Cart';
 import { CartInfo } from '../scenes/Cart/components/cart-info';
 import Header from '../scenes/Header';
+import ShoppingCarIcon from './cart-icon.js';
 
     export const StackProducts = StackNavigator({
         CatalogScreen: { 
             screen: Catalog,
-            navigationOptions:{
-                //title: 'Catalogo de productos'
-            }
         },
         CatalogDetailScreen: { screen: CatalogDetail },
         CartScreen: { screen: Cart },
@@ -31,11 +29,16 @@ import Header from '../scenes/Header';
     },
     {
         initialRouteName: 'CatalogScreen',
-        navigationOptions:{
-            //headerTitleAllowFontScaling: true,
+        navigationOptions: {
+            headerTitle: 'Mi Tienda',
             headerBackTitle: 'Atras',
             //getturesEnabled: true
-        },
+            //headerTitleAllowFontScaling: true,
+            headerRight: (
+                // <Header/>
+                <ShoppingCarIcon/>
+            )
+        }
     });
 
     const WithModal = createStackNavigator(

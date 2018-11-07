@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { SwitchNavigator } from "./src/navigation/navigation";
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 import RNLanguage from 'react-native-languages';
 import i18n from "./src/i18n";
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   
   constructor(props) {
     super(props);
@@ -25,7 +26,9 @@ export default class App extends Component<Props> {
 
   render() {
     return (
-      <SwitchNavigator/>
+        <Provider store = { store } >
+          <SwitchNavigator/>
+        </Provider>
     );
   }
 }

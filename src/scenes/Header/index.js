@@ -9,11 +9,14 @@ import{
 } from 'react-native';
 
 function Header(props){
+    console.log('Header::'+props);
     return (
         <View>
             <SafeAreaView>
                 <View style={styles.container}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress = { ()=> props.navigation.navigate('CartScreen') }
+                    >
                         <Image
                             source={require('../../../assets/tienda.png')}
                             style={styles.logo}

@@ -16,6 +16,7 @@ class ProductDetail extends Component{
       this.state = {
           product: []
       }
+      console.log(props);
   }
 
   componentDidMount = () =>{ 
@@ -56,11 +57,11 @@ class ProductDetail extends Component{
           <View style={styles.description}>
               <Text style={styles.descriptionText}>{ this.state.product.description } </Text>
           </View>
-
           <View style={styles.containerButton}>
-            <TouchableOpacity onPress={this._onPressButton}>
+            <TouchableOpacity 
+              onPress = { ()=> this.props.onPressEvent(this.state.product) }>
               <View style={styles.buttonOpacity}>
-                <Text style={styles.buttonTextOpacity}>Comprar</Text>
+                <Text style={styles.buttonTextOpacity}>Añadir al carrito</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -159,5 +160,4 @@ const styles = StyleSheet.create({
     fontSize: 18
   }
 });
-
 export default ProductDetail;
