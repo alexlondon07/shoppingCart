@@ -9,6 +9,7 @@ import {
 } 
 from 'react-native';
 import HttpProduct from '../../../services/Product/http-products';
+import i18n from '../../../i18n';
 
 class ProductDetail extends Component{
   constructor(props){
@@ -61,7 +62,7 @@ class ProductDetail extends Component{
             <TouchableOpacity 
               onPress = { ()=> this.props.onPressEvent(this.state.product) }>
               <View style={styles.buttonOpacity}>
-                <Text style={styles.buttonTextOpacity}>Añadir al carrito</Text>
+                <Text style={styles.buttonTextOpacity}>{ i18n.t('ADD_TO_CART') }</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -102,13 +103,15 @@ const styles = StyleSheet.create({
     color: '#3949AB',
     fontSize: 18,
     marginBottom: 5,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily: "IndieFlower"
   },
   brandText: {
     color: '#3949AB',
     fontSize: 16,
     marginBottom: 5,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontFamily: "IndieFlower"
   },
   imageContainer: {
     alignItems: 'center',
@@ -131,7 +134,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     borderRadius: 10,
     alignItems: 'center',
-    lineHeight: 30
+    lineHeight: 30,
+    fontFamily: "IndieFlower"
   },
   description: {
     alignItems: 'flex-start',
@@ -142,6 +146,7 @@ const styles = StyleSheet.create({
   descriptionText: {
     color: '#3949AB',
     fontSize: 20,
+    fontFamily: "IndieFlower"
   },
   containerButton:{
     alignItems: 'center',
@@ -157,7 +162,8 @@ const styles = StyleSheet.create({
   buttonTextOpacity: {
     padding: 20,
     color: 'white',
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: "IndieFlower"
   }
 });
 export default ProductDetail;

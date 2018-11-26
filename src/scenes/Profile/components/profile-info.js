@@ -46,7 +46,7 @@ class ProfileInfo extends Component {
                     style={styles.profileImage}
                 />
                 <Text style={styles.profileName}> { this.state.dataUser.name } </Text>
-                <Text style={styles.username}> { this.state.dataUser.username }  </Text>
+                <Text style={styles.username}> @{ this.state.dataUser.username }  </Text>
                 <Button style={styles.username}
                     color="white"
                     onPress={ this.closeSession } 
@@ -67,12 +67,14 @@ const styles = StyleSheet.create({
     profileTittle:{
         color: '#fff',
         fontSize: 30,
-        marginTop: 10
+        marginTop: 10,
+        fontFamily: "IndieFlower"
     },
     profileName:{
         color: '#fff',
         fontSize: 24,
-        marginTop: 20
+        marginTop: 20,
+        fontFamily: "IndieFlower"
     },
     profileImage:{
         width: 140,
@@ -82,7 +84,9 @@ const styles = StyleSheet.create({
     },
     username:{
         color: '#fff',
-        padding: 10
+        padding: 10,
+        fontSize: 24,
+        fontFamily: "IndieFlower"
     },
 });
 

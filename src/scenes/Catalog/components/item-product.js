@@ -44,10 +44,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
         paddingVertical: 5,
         paddingHorizontal: 7,
+        fontFamily: "IndieFlower"
     },
     brandText:{
         color: 'white',
-        fontSize: 11
+        fontSize: 14,
+        fontFamily: "IndieFlower"
     },
     cover:{
         height: 120,
@@ -64,22 +66,25 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 18,
-        color: '#44546b'
+        color: '#44546b',
+        fontFamily: "IndieFlower"
     },
     price:{
         backgroundColor: '#70b124',
         paddingVertical: 4,
         paddingHorizontal: 6,
         color: 'white',
-        fontSize: 13,
+        fontSize: 22,
         borderRadius: 5,
         overflow: 'hidden',
         alignSelf: 'flex-start',
+        fontFamily: "IndieFlower"
     },
     description:{
         color: '#6b6b6b',
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: 'bold',
+        fontFamily: "IndieFlower"
     }
     
 })

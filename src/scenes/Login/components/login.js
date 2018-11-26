@@ -6,7 +6,8 @@ import {
     TextInput,
     StyleSheet,
     Image,
-    AsyncStorage
+    AsyncStorage,
+    NetInfo
 } from 'react-native';
 
 import HttpUser from "../../../services/User/http-user";
@@ -66,6 +67,8 @@ export class LoginForm extends Component{
             console.log(data);
             await AsyncStorage.setItem('data', JSON.stringify(data));
             this.props.navigation.navigate('App');  
+        }else{
+            alert('Ha ocurrido un error, por favor intentelo más tarde');
         }
     }
     

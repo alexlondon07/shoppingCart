@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     },
     textItemSectionNav:{
         fontSize: 18,
+        fontFamily: "IndieFlower"
     },
     footerContainer:{
         padding: 15,
