@@ -32,7 +32,7 @@ export class SideMenu extends Component {
                 </ScrollView>
                 
                 <View style={styles.footerContainer}>
-                        <Text> Powered by Etn</Text>
+                        <Text> Powered by @alexlondon07</Text>
                 </View>
         </View>
         )

@@ -3,6 +3,7 @@ import {
     View,
     Text,
     FlatList,
+    StyleSheet
 } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
@@ -63,7 +64,7 @@ class Catalog extends Component{
 
     renderItem = ( { item }) => <ItemProduct navigation = { this.props.navigation } product = { item } />
     separatorComponent = () => <ItemSeparator />;
-    emptyComponent = () => <Text>{ i18n.t('PRODUCTS_NOT_FOUND') }</Text>
+    emptyComponent = () => <Text style={ styles.text }> { i18n.t('PRODUCTS_NOT_FOUND') } </Text>
     keyExtractor = item => item._id.toString();
     render(){
         return (
@@ -80,4 +81,11 @@ class Catalog extends Component{
         )
     }
 }
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 18,
+        fontFamily: "IndieFlower"
+    }
+});
 export default Catalog;

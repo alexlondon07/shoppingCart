@@ -17,7 +17,6 @@ class ProductDetail extends Component{
       this.state = {
           product: []
       }
-      console.log(props);
   }
 
   componentDidMount = () =>{ 

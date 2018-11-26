@@ -11,6 +11,8 @@ import Cart from '../scenes/Cart';
 import { CartInfo } from '../scenes/Cart/components/cart-info';
 import Header from '../scenes/Header';
 import ShoppingCarIcon from './cart-icon.js';
+import Form from '../scenes/Form';
+import Success from '../scenes/Succes';
 
     export const StackProducts = StackNavigator({
         CatalogScreen: { 
@@ -18,6 +20,8 @@ import ShoppingCarIcon from './cart-icon.js';
         },
         CatalogDetailScreen: { screen: CatalogDetail },
         CartScreen: { screen: Cart },
+        FormScreen: { screen: Form },
+        SuccessScreen: { screen: Success},
         ProfileScreen: { 
             screen: Profile,
             navigationOptions:{

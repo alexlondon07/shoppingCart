@@ -22,7 +22,7 @@ export class CartInfo extends Component {
                 style={styles.image}
             />
             <View>
-              <Text style={styles.title}> Listado de productos del carrito </Text>
+              <Text style={styles.title}> Resumen del pedido </Text>
             </View>
         </View>
         <CartList/>
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontSize: 24,
       marginTop: 20,
-      padding: 10
+      padding: 10,
+      fontFamily: "IndieFlower"
     },
     image:{
       width: 140,

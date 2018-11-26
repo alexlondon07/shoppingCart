@@ -1,19 +1,23 @@
 import React from 'react';
 import { View , TouchableHighlight, Text, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
+import { Badge } from 'react-native-elements';
 
 const ShoppingCarIcon =  props => (
     <View>
         <TouchableHighlight
-        onPress = { ()=> props.navigation.navigate('CartScreen') }
+        onPress = { ()=> props.cartItems.length>0 ? props.navigation.navigate('CartScreen') : alert('No tienes artículos en tu carrito de compras.')  }
         underlayColor = "#ccc">
             <View>
-                <Text style = { styles.badgettext}> {props.cartItems.length } </Text>
+                <Badge containerStyle={{ backgroundColor: 'orange'}}>
+                    <Text>{props.cartItems.length } items </Text>
+                </Badge>
                 <Icon
-                name='cart'
-                type='evilicon'
-                color='#517fa4'
+                    name='cart'
+                    type='evilicon'
+                    color='#517fa4'
                 />
             </View>
         </TouchableHighlight>
@@ -44,5 +48,4 @@ const styles = StyleSheet.create({
     }
 })
 
-
-export default connect(mapDispatchToProsp, null)(ShoppingCarIcon);
+export default connect(mapDispatchToProsp, null)(withNavigation(ShoppingCarIcon));
