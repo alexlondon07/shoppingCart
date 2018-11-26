@@ -18,7 +18,6 @@ import ShoppingCarIcon from './cart-icon.js';
         },
         CatalogDetailScreen: { screen: CatalogDetail },
         CartScreen: { screen: Cart },
-        CartInfoScreen: { screen: CartInfo },
         ProfileScreen: { 
             screen: Profile,
             navigationOptions:{
@@ -40,37 +39,9 @@ import ShoppingCarIcon from './cart-icon.js';
             )
         }
     });
-
-    const WithModal = createStackNavigator(
-        {
-            Main: {
-                screen: StackProducts,
-            },
-            CatalogDetailScreen: { 
-                screen: CatalogDetail,
-                navigationOptions:{
-                    title: 'Product Detail',
-                }
-            },
-        },
-        {
-            mode: 'modal',
-            headerMode: 'none',
-            navigationOptions:{
-                gesturesEnabled: true
-            }
-        },
-    );
-
-    export const StackCart = StackNavigator({
-        CartScreen: { screen: Cart },
-        CartInfoScreen: { screen: CartInfo },
-    });
-
+    
     export const Drawer = DrawerNavigator({
-        //StackScren: { screen: WithModal },
         StackScren: { screen: StackProducts },
-        StackCarScreen: { screen: StackCart },
     },{
         drawerWidth: 300,
         contentComponent: SideMenu

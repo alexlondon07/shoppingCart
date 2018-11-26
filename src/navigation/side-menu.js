@@ -20,7 +20,7 @@ export class SideMenu extends Component {
                     </View>
 
                     <View style={styles.itemSectionNav}>
-                        <Text style={styles.textItemSectionNav} onPress={ ()=> this.props.navigation.navigate('StackCarScreen') } > 
+                        <Text style={styles.textItemSectionNav} onPress={ ()=> this.props.navigation.navigate('CartScreen') } > 
                         <Icon name="shopping-cart" size={24} color="#70b124"/>   Carrito de Compras </Text>
                     </View>
 

@@ -6,9 +6,9 @@ import {
     TextInput,
     Button,
     View
-  } from 'react-native';
+} from 'react-native';
 
-  const Form = props => (
+const Form = props => (
     <ScrollView style={ styles.formWrapper }>
             <Text style={ styles.formLabel }> Name </Text>
             <TextInput
@@ -67,21 +67,21 @@ import {
             </View>
 
     </ScrollView>
-  );
+);
 
 
-  const styles = StyleSheet.create({
-    formWrapper:{
-      marginHorizontal: 25
-    },
-    formLabel:{
-      color: '#3F51B5',
-      marginVertical: 10
-    },
-    formInput: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#ccc'
-    }
-  });
+const styles = StyleSheet.create({
+        formWrapper:{
+        marginHorizontal: 25
+        },
+        formLabel:{
+        color: '#3F51B5',
+        marginVertical: 10
+        },
+        formInput: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc'
+        }
+});
 
-  export default Form;
+export default Form;
