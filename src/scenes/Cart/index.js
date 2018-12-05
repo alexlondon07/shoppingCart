@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { 
     View
 } from 'react-native';
-import { CartInfo } from "./components/cart-info";
+import { connect } from 'react-redux';
+import CartList from "./components/cart-list";
+import { removeProductFromCart } from '../../actions/cart-actions';
 
 class Cart extends Component {
     constructor(props) {
@@ -11,9 +13,25 @@ class Cart extends Component {
     render() {
         return (
             <View>
-                <CartInfo navigation={ this.props.navigation } />                  
+                <CartList 
+                    onPressEvent={ this.props.removeItem }
+                    navigation={ this.props.navigation }
+                />            
             </View>
         );
     }
 }
-export default Cart;
+
+const mapStateToProps = ( state ) => {
+    return {
+        cartItems: state
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        removeItem: (product) => dispatch(removeProductFromCart(product))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

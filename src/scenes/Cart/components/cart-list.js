@@ -17,24 +17,16 @@ renderItem = ( { item }) => <CartItem product = { item } />
 separatorComponent = () => <ItemSeparator />;
 emptyComponent = () => <Text>El carrito se encuentra vacio.</Text>
 keyExtractor = item => item._id.toString();
-// const total = 0;
-// totalPurchase = (props) => {
-//     props.cartItems.map((item) => (
-//         total += parseInt(item.price)
-//     ))
-// }
 const CartList = (props) => (
     <ScrollView>
         { props.cartItems.length > 0 &&
             <View>
-                {/* <Text style={ styles.title }>Total</Text> */}
                 <Button
                     title ="Continuar comprando"
                     onPress = { ()=> props.navigation.navigate('CatalogScreen') }
                 />
                 <Button
                     title ="Realizar Compra"
-                    //onPress = { ()=>{ this.totalPurchase(props) } }
                     onPress = { ()=> props.navigation.navigate('FormScreen') }
                 />
             </View>
@@ -51,6 +43,8 @@ const CartList = (props) => (
                         key={item._id}
                         title={item.name}
                         subtitle={item.price}
+                        rightIcon={{ name: 'close' }}
+                        onPressRightIcon={ () => props.onPressEvent(item) } 
                     />
                 ))
             }
